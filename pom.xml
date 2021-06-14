@@ -5,19 +5,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jinku</groupId>
-  <artifactId>ddd-quickstart</artifactId>
+  <artifactId>sync-server</artifactId>
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>application</module>
-    <module>infrastructure</module>
+    <module>repository</module>
     <module>domain</module>
     <module>api</module>
     <module>server</module>
     <module>common</module>
   </modules>
 
-  <name>ddd-quickstart</name>
+  <name>sync-server</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

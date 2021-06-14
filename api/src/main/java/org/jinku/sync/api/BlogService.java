@@ -1,4 +1,4 @@
-package org.jinku.ddd.api;
+package org.jinku.sync.api;
 
 public interface BlogService {
 }
