@@ -1,4 +1,4 @@
-package org.jinku.sync.server;
+package org.jinku.sync.application.server;
 
 /**
  * Created by jinku on 2018/3/27.

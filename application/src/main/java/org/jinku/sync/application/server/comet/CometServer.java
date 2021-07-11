@@ -1,13 +1,15 @@
-package org.jinku.sync.server.comet;
+package org.jinku.sync.application.server.comet;
 
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.codec.http.websocketx.extensions.compression.WebSocketServerCompressionHandler;
-import org.jinku.sync.server.AbstractServer;
+import org.jinku.ddd.repository.session.SessionManager;
+import org.jinku.sync.application.server.AbstractServer;
 
 public class CometServer extends AbstractServer {
+
     @Override
     public String getDesc() {
         return "长连接服务";
@@ -23,11 +25,12 @@ public class CometServer extends AbstractServer {
         pipeline.addLast(new HttpServerCodec());
         pipeline.addLast(new HttpObjectAggregator(65536));
         pipeline.addLast(new WebSocketServerCompressionHandler());
-        pipeline.addLast(new WebSocketServerProtocolHandler("websocket", null, true));
+        pipeline.addLast(new WebSocketServerProtocolHandler("websocket"));
+        pipeline.addLast(new CometBizHandler());
     }
 
     @Override
     public void onClose() {
-
+        SessionManager.getInstance().clear();
     }
 }

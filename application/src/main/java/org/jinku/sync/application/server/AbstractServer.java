@@ -1,4 +1,4 @@
-package org.jinku.sync.server;
+package org.jinku.sync.application.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
