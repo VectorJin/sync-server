@@ -5,6 +5,8 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.NettyRuntime;
+import io.netty.util.internal.SystemPropertyUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,6 +60,10 @@ public abstract class AbstractServer implements Server {
         }
         // channels关闭
         onClose();
+    }
+
+    public int getWorkThreadNum() {
+        return Math.max(1, NettyRuntime.availableProcessors() * 2);
     }
 
     public abstract String getDesc();
