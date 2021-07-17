@@ -7,7 +7,9 @@ import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.codec.http.websocketx.extensions.compression.WebSocketServerCompressionHandler;
 import org.jinku.sync.application.server.AbstractServer;
 import org.jinku.sync.application.server.comet.CometBizHandler;
+import org.springframework.stereotype.Component;
 
+@Component("HttpServer")
 public class HttpServer extends AbstractServer {
 
     @Override

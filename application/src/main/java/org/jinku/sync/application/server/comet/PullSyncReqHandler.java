@@ -2,7 +2,9 @@ package org.jinku.sync.application.server.comet;
 
 import io.netty.channel.ChannelHandlerContext;
 import org.jinku.sync.application.ao.ResultAo;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PullSyncReqHandler implements ReqHandler {
     @Override
     public ReqType getReqType() {

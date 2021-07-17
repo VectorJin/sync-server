@@ -6,6 +6,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import org.jinku.sync.application.ao.ResultAo;
+import org.jinku.sync.application.bootstrap.ApplicationContextUtil;
 
 public class CometBizHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
 
@@ -17,7 +18,8 @@ public class CometBizHandler extends SimpleChannelInboundHandler<WebSocketFrame>
             throw new UnsupportedOperationException(message);
         }
         String req = ((TextWebSocketFrame) msg).text();
-        ResultAo resultAo = ReqHandlerFactory.getInstance().handleReq(req, ctx);
+
+        ResultAo resultAo = ApplicationContextUtil.getBean(ReqHandlerFactory.class).handleReq(req, ctx);
         ctx.channel().writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(resultAo)));
     }
 }

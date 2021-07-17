@@ -6,7 +6,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.NettyRuntime;
-import io.netty.util.internal.SystemPropertyUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +41,8 @@ public abstract class AbstractServer implements Server {
         try {
             ChannelFuture channelFuture = bootstrap.bind(getPort()).sync();
             channel = channelFuture.channel();
+            logger.info(getDesc() + " server start !!!");
+            System.out.println(getDesc() + " server start !!!");
             channelFuture.channel().closeFuture().syncUninterruptibly();
         } catch (Exception e) {
             logger.error(getDesc() + " server error !!!", e);
@@ -50,7 +51,7 @@ public abstract class AbstractServer implements Server {
             workerGroup.shutdownGracefully();
             close();
         }
-        logger.info(getDesc() + " server start !!!");
+        logger.info(getDesc() + " server stopped !!!");
     }
 
     public void close() {

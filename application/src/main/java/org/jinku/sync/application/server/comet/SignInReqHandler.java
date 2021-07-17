@@ -7,7 +7,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.jinku.ddd.repository.session.SessionManager;
 import org.jinku.sync.application.ao.ResultAo;
 import org.jinku.sync.application.param.UserDeviceParam;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SignInReqHandler implements ReqHandler {
 
     @Override
