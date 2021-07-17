@@ -42,7 +42,6 @@ public abstract class AbstractServer implements Server {
             ChannelFuture channelFuture = bootstrap.bind(getPort()).sync();
             channel = channelFuture.channel();
             logger.info(getDesc() + " server start !!!");
-            System.out.println(getDesc() + " server start !!!");
             channelFuture.channel().closeFuture().syncUninterruptibly();
         } catch (Exception e) {
             logger.error(getDesc() + " server error !!!", e);
