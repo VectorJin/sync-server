@@ -42,15 +42,19 @@ public abstract class AbstractServer implements Server {
             ChannelFuture channelFuture = bootstrap.bind(getPort()).sync();
             channel = channelFuture.channel();
             logger.info(getDesc() + " server start !!!");
-            channelFuture.channel().closeFuture().syncUninterruptibly();
+            channelFuture.channel().closeFuture().addListener(future -> {
+                bossGroup.shutdownGracefully();
+                workerGroup.shutdownGracefully();
+                close();
+                logger.info(getDesc() + " server closed !!!");
+            });
         } catch (Exception e) {
-            logger.error(getDesc() + " server error !!!", e);
-        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
             close();
+            logger.error(getDesc() + " server error !!!", e);
+
         }
-        logger.info(getDesc() + " server stopped !!!");
     }
 
     public void close() {

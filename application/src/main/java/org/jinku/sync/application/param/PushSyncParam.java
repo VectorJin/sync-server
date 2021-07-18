@@ -3,11 +3,9 @@ package org.jinku.sync.application.param;
 import lombok.Data;
 
 @Data
-public class PullSyncParam {
+public class PushSyncParam {
     private String userId;
-    private String deviceId;
     private int bizType;
     private String bizUuid;
-    private long lastSyncId;
-    private int maxSize;
+    private String dataJson;
 }

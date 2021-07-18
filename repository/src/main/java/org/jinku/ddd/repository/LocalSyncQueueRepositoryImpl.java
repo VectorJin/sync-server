@@ -24,7 +24,7 @@ public class LocalSyncQueueRepositoryImpl implements SyncQueueRepository {
         if (queue == null) {
             queue = new Vector<>();
             Vector<SyncEntity> existOrNewQueue = queueMap.putIfAbsent(queueKey, queue);
-            if (existOrNewQueue != null) {//并发情况别的线程已经写入，使用对方
+            if (existOrNewQueue != null) {//并发情况别的线程已经写入，使用对方写入的队列
                 queue = existOrNewQueue;
             }
         }

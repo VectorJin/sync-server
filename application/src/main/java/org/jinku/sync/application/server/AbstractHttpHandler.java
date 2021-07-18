@@ -16,8 +16,7 @@ public abstract class AbstractHttpHandler extends SimpleChannelInboundHandler<Fu
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest httpRequest) throws Exception {
-        String uri = httpRequest.uri();
-        if (!uri.startsWith(getUrl())) {
+        if (!isSupport(httpRequest.uri())) {
             sendHttpResponse(ctx, httpRequest, new DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.NOT_FOUND));
             return;
         }
@@ -28,7 +27,7 @@ public abstract class AbstractHttpHandler extends SimpleChannelInboundHandler<Fu
             return;
         }
         Map<String, String> paramsMap = RequestParser.parseParam(httpRequest);
-        ResultAo resultAo = doService(paramsMap);
+        ResultAo resultAo = doService(httpRequest.uri(), paramsMap);
         String dataJson = JSONObject.toJSONString(resultAo);
 
         ByteBuf contentByteBuf = ctx.alloc().buffer(dataJson.getBytes().length);
@@ -47,7 +46,7 @@ public abstract class AbstractHttpHandler extends SimpleChannelInboundHandler<Fu
         }
     }
 
-    public abstract String getUrl();
+    public abstract boolean isSupport(String uri);
 
-    public abstract ResultAo doService(Map<String, String> paramsMap);
+    public abstract ResultAo doService(String uri, Map<String, String> paramsMap);
 }

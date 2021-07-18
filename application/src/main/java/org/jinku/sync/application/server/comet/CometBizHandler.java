@@ -7,7 +7,9 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import org.jinku.sync.application.ao.ResultAo;
 import org.jinku.sync.application.bootstrap.ApplicationContextUtil;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CometBizHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
 
     @Override

@@ -14,4 +14,12 @@ public class ResultAo {
         resultAo.setMsg("success");
         return resultAo;
     }
+
+    public static ResultAo success(Object data) {
+        ResultAo resultAo = new ResultAo();
+        resultAo.setData(data);
+        resultAo.setCode("0");
+        resultAo.setMsg("success");
+        return resultAo;
+    }
 }

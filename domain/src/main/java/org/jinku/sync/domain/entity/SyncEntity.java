@@ -11,14 +11,13 @@ import org.jinku.sync.domain.types.BizType;
 @ToString
 public class SyncEntity {
     private long syncId;
+    private final String userId;
     private final BizType bizType;
     private final String bizUuid;
     private final String dataJson;
 
-    public SyncEntity(BizType bizType, String bizUuid, String dataJson) {
-        Preconditions.checkNotNull(bizType);
-        Preconditions.checkNotNull(bizUuid);
-        Preconditions.checkNotNull(dataJson);
+    public SyncEntity(String userId, BizType bizType, String bizUuid, String dataJson) {
+        this.userId = userId;
         this.bizType = bizType;
         this.bizUuid = bizUuid;
         this.dataJson = dataJson;

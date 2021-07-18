@@ -6,10 +6,11 @@ import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.codec.http.websocketx.extensions.compression.WebSocketServerCompressionHandler;
 import org.jinku.ddd.repository.session.SessionManager;
+import org.jinku.sync.application.bootstrap.ApplicationContextUtil;
 import org.jinku.sync.application.server.AbstractServer;
 import org.springframework.stereotype.Component;
 
-@Component("CometServer")
+@Component()
 public class CometServer extends AbstractServer {
 
     @Override
@@ -28,7 +29,7 @@ public class CometServer extends AbstractServer {
         pipeline.addLast(new HttpObjectAggregator(64 * 1024));
         pipeline.addLast(new WebSocketServerCompressionHandler());
         pipeline.addLast(new WebSocketServerProtocolHandler("websocket"));
-        pipeline.addLast(new CometBizHandler());
+        pipeline.addLast(ApplicationContextUtil.getBean(CometBizHandler.class));
     }
 
     @Override
