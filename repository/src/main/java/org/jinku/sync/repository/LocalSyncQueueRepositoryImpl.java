@@ -1,8 +1,9 @@
-package org.jinku.ddd.repository;
+package org.jinku.sync.repository;
 
 import org.jinku.sync.domain.entity.SyncEntity;
 import org.jinku.sync.domain.repository.SyncQueueRepository;
 import org.jinku.sync.domain.types.BizType;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 /**
  * 内存实现同步队列
  */
+@Component
 public class LocalSyncQueueRepositoryImpl implements SyncQueueRepository {
 
     private final Map<String, Vector<SyncEntity>> queueMap = new ConcurrentHashMap<>();

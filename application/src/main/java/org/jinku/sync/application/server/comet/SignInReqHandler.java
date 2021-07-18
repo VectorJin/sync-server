@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.commons.lang3.StringUtils;
-import org.jinku.ddd.repository.session.SessionManager;
+import org.jinku.sync.repository.session.SessionManager;
 import org.jinku.sync.application.ao.ResultAo;
 import org.jinku.sync.application.param.UserDeviceParam;
 import org.springframework.stereotype.Component;

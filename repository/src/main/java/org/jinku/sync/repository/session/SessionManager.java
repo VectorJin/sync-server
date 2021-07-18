@@ -1,8 +1,6 @@
-package org.jinku.ddd.repository.session;
+package org.jinku.sync.repository.session;
 
-import com.google.common.base.Preconditions;
 import io.netty.channel.Channel;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
