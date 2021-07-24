@@ -12,7 +12,6 @@
     <module>application</module>
     <module>repository</module>
     <module>domain</module>
-    <module>api</module>
   </modules>
 
   <name>sync-server</name>
