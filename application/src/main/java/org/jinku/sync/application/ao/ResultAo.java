@@ -22,4 +22,11 @@ public class ResultAo {
         resultAo.setMsg("success");
         return resultAo;
     }
+
+    public static ResultAo failed(String msg) {
+        ResultAo resultAo = new ResultAo();
+        resultAo.setCode("1");
+        resultAo.setMsg(msg);
+        return resultAo;
+    }
 }

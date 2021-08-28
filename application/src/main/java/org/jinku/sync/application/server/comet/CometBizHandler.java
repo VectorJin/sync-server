@@ -1,6 +1,7 @@
 package org.jinku.sync.application.server.comet;
 
 import com.alibaba.fastjson.JSON;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -10,6 +11,7 @@ import org.jinku.sync.application.bootstrap.ApplicationContextUtil;
 import org.springframework.stereotype.Component;
 
 @Component
+@ChannelHandler.Sharable
 public class CometBizHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
 
     @Override

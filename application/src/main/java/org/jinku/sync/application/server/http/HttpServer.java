@@ -7,7 +7,7 @@ import org.jinku.sync.application.bootstrap.ApplicationContextUtil;
 import org.jinku.sync.application.server.AbstractServer;
 import org.springframework.stereotype.Component;
 
-@Component()
+@Component
 public class HttpServer extends AbstractServer {
 
     @Override
