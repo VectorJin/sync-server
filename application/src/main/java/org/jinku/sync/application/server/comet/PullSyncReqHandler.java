@@ -5,8 +5,9 @@ import io.netty.channel.ChannelHandlerContext;
 import org.jinku.sync.application.ao.ResultAo;
 import org.jinku.sync.application.param.PullSyncParam;
 import org.jinku.sync.domain.entity.SyncEntity;
-import org.jinku.sync.domain.repository.SyncQueueRepository;
+import org.jinku.sync.domain.service.SyncQueueService;
 import org.jinku.sync.domain.types.BizType;
+import org.jinku.sync.domain.types.ReqType;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,10 +15,10 @@ import java.util.List;
 @Component
 public class PullSyncReqHandler implements ReqHandler {
 
-    private final SyncQueueRepository syncQueueRepository;
+    private final SyncQueueService syncQueueService;
 
-    public PullSyncReqHandler(SyncQueueRepository syncQueueRepository) {
-        this.syncQueueRepository = syncQueueRepository;
+    public PullSyncReqHandler(SyncQueueService syncQueueService) {
+        this.syncQueueService = syncQueueService;
     }
 
     @Override
@@ -29,7 +30,7 @@ public class PullSyncReqHandler implements ReqHandler {
     public ResultAo handleReq(String reqData, ChannelHandlerContext ctx) {
         // 从Sync队列获取
         PullSyncParam param = JSON.parseObject(reqData, PullSyncParam.class);
-        List<SyncEntity> syncEntities = syncQueueRepository.pullSync(BizType.get(param.getBizType()),
+        List<SyncEntity> syncEntities = syncQueueService.pullSync(BizType.get(param.getBizType()),
                 param.getBizUuid(), param.getLastSyncId(), param.getMaxSize());
         return ResultAo.success(syncEntities);
     }

@@ -1,11 +1,11 @@
-package org.jinku.sync.domain.repository;
+package org.jinku.sync.domain.service;
 
 import org.jinku.sync.domain.entity.SyncEntity;
 import org.jinku.sync.domain.types.BizType;
 
 import java.util.List;
 
-public interface SyncQueueRepository {
+public interface SyncQueueService {
 
     long addSync(SyncEntity syncEntity);
 

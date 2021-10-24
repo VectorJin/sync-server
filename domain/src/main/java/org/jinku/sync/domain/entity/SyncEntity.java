@@ -1,6 +1,5 @@
 package org.jinku.sync.domain.entity;
 
-import com.google.common.base.Preconditions;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;

@@ -4,13 +4,19 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.commons.lang3.StringUtils;
-import org.jinku.sync.repository.session.SessionManager;
+import org.jinku.sync.domain.repository.UserSessionRepository;
 import org.jinku.sync.application.ao.ResultAo;
 import org.jinku.sync.application.param.UserDeviceParam;
+import org.jinku.sync.domain.types.ReqType;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 @Component
 public class SignInReqHandler implements ReqHandler {
+
+    @Resource
+    private UserSessionRepository userSessionRepository;
 
     @Override
     public ReqType getReqType() {
@@ -24,7 +30,7 @@ public class SignInReqHandler implements ReqHandler {
         Preconditions.checkArgument(StringUtils.isNotBlank(userDevice.getUserId()) && StringUtils.isNotBlank(userDevice.getDeviceId()),
                 "用户设备签入信息非法: userDevice:{%s}", userDevice);
         // 用户设备签入
-        SessionManager.getInstance().userDeviceSignIn(userDevice.getUserId(), ctx.channel());
+        userSessionRepository.userSignIn(userDevice.getUserId(), ctx.channel());
         // 返回签入成功
         return ResultAo.success();
     }

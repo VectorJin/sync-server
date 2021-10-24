@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Component
 public class HttpBizHandler extends AbstractHttpHandler {
@@ -27,7 +28,7 @@ public class HttpBizHandler extends AbstractHttpHandler {
         HttpReqHandler reqHandler = handlerList.stream()
                 .filter(handler -> uri.endsWith(handler.supportUrl()))
                 .findFirst().orElse(null);
-        Preconditions.checkNotNull(reqHandler);
+        Objects.requireNonNull(reqHandler);
         return reqHandler.handleReq(paramsMap);
     }
 }

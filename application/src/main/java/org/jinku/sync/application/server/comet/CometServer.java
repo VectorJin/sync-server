@@ -5,7 +5,6 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.codec.http.websocketx.extensions.compression.WebSocketServerCompressionHandler;
-import org.jinku.sync.repository.session.SessionManager;
 import org.jinku.sync.application.bootstrap.ApplicationContextUtil;
 import org.jinku.sync.application.server.AbstractServer;
 import org.springframework.stereotype.Component;
@@ -34,6 +33,5 @@ public class CometServer extends AbstractServer {
 
     @Override
     public void onClose() {
-        SessionManager.getInstance().clear();
     }
 }

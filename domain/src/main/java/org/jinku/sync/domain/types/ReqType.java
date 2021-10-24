@@ -1,4 +1,4 @@
-package org.jinku.sync.application.server.comet;
+package org.jinku.sync.domain.types;
 
 public enum ReqType {
 

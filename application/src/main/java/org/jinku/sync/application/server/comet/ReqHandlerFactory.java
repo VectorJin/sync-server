@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Preconditions;
 import io.netty.channel.ChannelHandlerContext;
 import org.jinku.sync.application.ao.ResultAo;
+import org.jinku.sync.domain.types.ReqType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 

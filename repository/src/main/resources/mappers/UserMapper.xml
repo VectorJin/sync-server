@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jinku.sync.repository.dao.UserDao">
+
+    <resultMap id="BASE_RESULT" type="org.jinku.sync.repository.dao.po.UserPo">
+    </resultMap>
+
+    <sql id="ALL_COLUMNS">
+    id, user_id, user_name, nick_name, email, valid, ctime, utime
+    </sql>
+    <sql id="INSERT_COLUMNS">
+    user_id, user_name, nick_name, email, valid, ctime, utime
+    </sql>
+
+    <insert id="save" parameterType="org.jinku.sync.repository.dao.po.UserPo">
+        insert into user(<include refid="INSERT_COLUMNS"/>)
+        values(#{userId}, #{userName}, #{nickName}, #{email}, 1, UNIX_TIMESTAMP(now()), UNIX_TIMESTAMP(now()))
+    </insert>
+
+    <select id="getByUserIds" resultMap="BASE_RESULT">
+        select <include refid="ALL_COLUMNS"/>
+        from user
+        where user_id in
+        <foreach collection="userIds" item="userId" index="index" open="(" close=")" separator=",">
+            #{userId}
+        </foreach>
+    </select>
+</mapper>
