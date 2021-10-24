@@ -9,7 +9,7 @@ import org.jinku.sync.application.bootstrap.ApplicationContextUtil;
 import org.jinku.sync.application.server.AbstractServer;
 import org.springframework.stereotype.Component;
 
-@Component()
+@Component
 public class CometServer extends AbstractServer {
 
     @Override
@@ -19,7 +19,7 @@ public class CometServer extends AbstractServer {
 
     @Override
     public int getPort() {
-        return 80;
+        return 8080;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class CometServer extends AbstractServer {
         pipeline.addLast(new HttpServerCodec());
         pipeline.addLast(new HttpObjectAggregator(64 * 1024));
         pipeline.addLast(new WebSocketServerCompressionHandler());
-        pipeline.addLast(new WebSocketServerProtocolHandler("websocket"));
+        pipeline.addLast(new WebSocketServerProtocolHandler("/websocket", null, true));
         pipeline.addLast(ApplicationContextUtil.getBean(CometBizHandler.class));
     }
 
